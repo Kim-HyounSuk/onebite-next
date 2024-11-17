@@ -2,7 +2,9 @@ import BookItem from '@/components/BookItem';
 import { IBookData } from '@/types/book';
 
 export default async function RecommandBooks() {
-	const res = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/random`);
+	const res = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/random`, {
+		next: { revalidate: 3 },
+	});
 	if (!res.ok) {
 		return <div>오류가 발생했습니다.</div>;
 	}

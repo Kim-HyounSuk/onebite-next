@@ -1,4 +1,4 @@
-export default async function Page({ params }: { params: { id: string | string[] } }) {
+export default async function Page({ params }: { params: Promise<Record<string, string | string[]>> }) {
 	const { id } = await params;
 	const res = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/${id}`);
 	if (!res.ok) {
